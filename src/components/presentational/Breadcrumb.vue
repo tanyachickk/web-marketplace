@@ -25,6 +25,10 @@ export default class Breadcrumb extends Vue {
     color: #818ea3;
     font-size: 0.625rem;
     text-transform: uppercase;
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+    }
   }
 
   &__title {

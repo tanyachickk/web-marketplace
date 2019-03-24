@@ -6,11 +6,11 @@
 
 <style lang="scss">
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i");
-@import "node_modules/bootstrap/scss/bootstrap";
-@import "node_modules/bootstrap-vue/src/index.scss";
+@import url("https://fonts.googleapis.com/css?family=Exo+2:400,500");
 
 * {
   padding: 0;
+  margin: 0;
   box-sizing: border-box;
 }
 
