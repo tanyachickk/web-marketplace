@@ -41,6 +41,7 @@ export default class Sidebar extends Vue {
     width: 100%;
     height: 60px;
     border-bottom: 1px solid #e1e5eb;
+    box-sizing: content-box;
   }
   &__menu {
     flex-grow: 1;

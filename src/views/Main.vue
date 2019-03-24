@@ -3,9 +3,7 @@
     sidebar(:items="routes")
     main.body
       navbar
-      .content
-        .content__page-header
-        router-view.content__body
+      router-view.content
   </div>
 </template>
 
@@ -22,12 +20,14 @@ import Navbar from "@/components/layout/Navbar.vue";
 })
 export default class Main extends Vue {
   get routes() {
-    return (this.$router as any).options.routes[0].children.map(route => ({
-      link: route.path,
-      title: route.meta.title,
-      icon: route.meta.icon,
-      isActive: this.$route.name === route.name
-    }));
+    return (this.$router as any).options.routes[1].children
+      .filter(route => route.meta && route.meta.title)
+      .map(route => ({
+        link: route.meta.sectionPath || route.path,
+        title: route.meta.title,
+        icon: route.meta.icon,
+        isActive: this.$route.name === route.name
+      }));
   }
 }
 </script>
@@ -49,5 +49,6 @@ export default class Main extends Vue {
 
 .content {
   flex-grow: 1;
+  padding: 0 1.5rem;
 }
 </style>

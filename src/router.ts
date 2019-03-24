@@ -5,6 +5,7 @@ import Requests from './views/Requests.vue';
 import Responses from './views/Responses.vue';
 import Profile from './views/Profile.vue';
 import Settings from './views/Settings.vue';
+import NotFound from './views/NotFound.vue';
 import Login from './views/Login.vue';
 
 Vue.use(Router);
@@ -12,19 +13,30 @@ Vue.use(Router);
 export default new Router({
   routes: [
     {
+      path: '/login',
+      name: 'login',
+      component: Login,
+    },
+    {
       path: '/',
       redirect: '/requests',
       name: 'main',
       component: Main,
       children: [
         {
-          path: 'requests',
+          path: '',
+          redirect: '/requests',
+        },
+        {
+          path: 'requests/:id?',
           name: 'requests',
           component: Requests,
           meta: {
             title: 'Заявки',
+            sectionPath: '/requests',
             icon: 'note_add',
           },
+          props: (route) => ({ id: +route.params.id }),
         },
         {
           path: 'responses',
@@ -53,12 +65,12 @@ export default new Router({
             icon: 'settings',
           },
         },
+        {
+          path: '*',
+          name: 'notFound',
+          component: NotFound,
+        },
       ],
-    },
-    {
-      path: '/login',
-      name: 'login',
-      component: Login,
     },
   ],
 });

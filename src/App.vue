@@ -9,6 +9,11 @@
 @import "node_modules/bootstrap/scss/bootstrap";
 @import "node_modules/bootstrap-vue/src/index.scss";
 
+* {
+  padding: 0;
+  box-sizing: border-box;
+}
+
 #app {
   font-family: "Open Sans", sans-serif;
   font-weight: 400;
