@@ -5,13 +5,13 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from "vue-property-decorator";
-import Badge from "@/components/presentational/Badge.vue";
+import { Component, Prop, Vue } from 'vue-property-decorator';
+import Badge from '@/components/presentational/Badge.vue';
 
 @Component({
   components: {
-    Badge
-  }
+    Badge,
+  },
 })
 export default class NotificationsControl extends Vue {}
 </script>

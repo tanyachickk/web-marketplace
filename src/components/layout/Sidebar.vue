@@ -6,17 +6,17 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from "vue-property-decorator";
-import VerticalMenu from "@/components/layout/VerticalMenu.vue";
+import { Component, Prop, Vue } from 'vue-property-decorator';
+import VerticalMenu from '@/components/layout/VerticalMenu.vue';
 
 @Component({
   components: {
-    VerticalMenu
-  }
+    VerticalMenu,
+  },
 })
 export default class Sidebar extends Vue {
   @Prop({ type: Array, default: () => [] })
-  items!: any[];
+  public items!: any[];
 }
 </script>
 

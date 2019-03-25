@@ -8,25 +8,25 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
-import Sidebar from "@/components/layout/Sidebar.vue";
-import Navbar from "@/components/layout/Navbar.vue";
+import { Component, Vue } from 'vue-property-decorator';
+import Sidebar from '@/components/layout/Sidebar.vue';
+import Navbar from '@/components/layout/Navbar.vue';
 
 @Component({
   components: {
     Sidebar,
-    Navbar
-  }
+    Navbar,
+  },
 })
 export default class Main extends Vue {
   get routes() {
     return (this.$router as any).options.routes[1].children
-      .filter(route => route.meta && route.meta.title)
-      .map(route => ({
+      .filter((route) => route.meta && route.meta.title)
+      .map((route) => ({
         link: route.meta.sectionPath || route.path,
         title: route.meta.title,
         icon: route.meta.icon,
-        isActive: this.$route.name === route.name
+        isActive: this.$route.name === route.name,
       }));
   }
 }

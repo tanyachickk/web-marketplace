@@ -11,15 +11,15 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
-import InputGroup from "@/components/controls/InputGroup.vue";
-import ControlLabel from "@/components/presentational/FormControlLabel.vue";
+import { Component, Vue } from 'vue-property-decorator';
+import InputGroup from '@/components/controls/InputGroup.vue';
+import ControlLabel from '@/components/presentational/FormControlLabel.vue';
 
 @Component({
   components: {
     InputGroup,
-    ControlLabel
-  }
+    ControlLabel,
+  },
 })
 export default class SignInForm extends Vue {}
 </script>

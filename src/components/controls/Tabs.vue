@@ -9,16 +9,16 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from "vue-property-decorator";
+import { Component, Prop, Vue } from 'vue-property-decorator';
 
 @Component({
-  components: {}
+  components: {},
 })
 export default class Tabs extends Vue {
   @Prop({ type: Number, default: 0 })
-  activeTab: number;
+  public activeTab: number;
   @Prop({ type: Array, default: () => [] })
-  tabs: string[];
+  public tabs: string[];
 
   get tabWidth() {
     return 100 / this.tabs.length;
@@ -27,7 +27,7 @@ export default class Tabs extends Vue {
   get lineStyle() {
     return {
       width: `${this.tabWidth}%`,
-      transform: `translateX(${this.activeTab * 100}%)`
+      transform: `translateX(${this.activeTab * 100}%)`,
     };
   }
 }

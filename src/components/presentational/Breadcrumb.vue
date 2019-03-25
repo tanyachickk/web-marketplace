@@ -5,14 +5,14 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from "vue-property-decorator";
+import { Component, Prop, Vue } from 'vue-property-decorator';
 
 @Component
 export default class Breadcrumb extends Vue {
-  @Prop({ type: Object, default: () => {} })
-  section: any;
-  @Prop({ type: String, default: "" })
-  title: string;
+  @Prop({ type: Object, default: () => ({}) })
+  public section: any;
+  @Prop({ type: String, default: '' })
+  public title: string;
 }
 </script>
 

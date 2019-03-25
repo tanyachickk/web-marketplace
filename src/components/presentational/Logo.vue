@@ -5,12 +5,12 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from "vue-property-decorator";
+import { Component, Prop, Vue } from 'vue-property-decorator';
 
 @Component
 export default class Logo extends Vue {
   @Prop({ type: Boolean, default: true })
-  isAdditional: boolean;
+  public isAdditional: boolean;
 }
 </script>
 

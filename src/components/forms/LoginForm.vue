@@ -7,12 +7,12 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
-import Card from "@/components/layout/Card.vue";
-import Tabs from "@/components/controls/Tabs.vue";
-import TabsContent from "@/components/controls/TabsContent.vue";
-import SignInForm from "@/components/forms/SignInForm.vue";
-import SignUpForm from "@/components/forms/SignUpForm.vue";
+import { Component, Vue } from 'vue-property-decorator';
+import Card from '@/components/layout/Card.vue';
+import Tabs from '@/components/controls/Tabs.vue';
+import TabsContent from '@/components/controls/TabsContent.vue';
+import SignInForm from '@/components/forms/SignInForm.vue';
+import SignUpForm from '@/components/forms/SignUpForm.vue';
 
 @Component({
   components: {
@@ -20,12 +20,12 @@ import SignUpForm from "@/components/forms/SignUpForm.vue";
     Tabs,
     TabsContent,
     SignInForm,
-    SignUpForm
-  }
+    SignUpForm,
+  },
 })
 export default class LoginForm extends Vue {
-  activeTab = 0;
-  tabs: string[] = ["Вход в систему", "Регистрация"];
+  public activeTab = 0;
+  public tabs: string[] = ['Вход в систему', 'Регистрация'];
 }
 </script>
 

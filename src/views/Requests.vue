@@ -5,24 +5,24 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop } from "vue-property-decorator";
-import Breadcrumb from "@/components/presentational/Breadcrumb.vue";
+import { Component, Vue, Prop } from 'vue-property-decorator';
+import Breadcrumb from '@/components/presentational/Breadcrumb.vue';
 
 @Component({
   components: {
-    Breadcrumb
-  }
+    Breadcrumb,
+  },
 })
 export default class Requests extends Vue {
   @Prop({ type: Number, default: 0 })
-  id: number;
+  public id: number;
 
   get requestId() {
     return !isNaN(this.id) ? this.id : 0;
   }
 
   get title() {
-    return this.requestId ? `Заявка #${this.requestId}` : "Список заявок";
+    return this.requestId ? `Заявка #${this.requestId}` : 'Список заявок';
   }
 }
 </script>

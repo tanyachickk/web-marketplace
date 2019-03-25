@@ -1,12 +1,12 @@
 <script lang="tsx">
-import { Component, Prop, Vue } from "vue-property-decorator";
+import { Component, Prop, Vue } from 'vue-property-decorator';
 
 @Component({
-  components: {}
+  components: {},
 })
 export default class TabsContent extends Vue {
   @Prop({ type: Number, default: 0 })
-  activeTab: number;
+  public activeTab: number;
 
   get tabs() {
     return this.$slots.default;
@@ -18,38 +18,38 @@ export default class TabsContent extends Vue {
 
   get containerStyle() {
     return {
-      width: `${100 * this.tabs.length}%`
+      width: `${100 * this.tabs.length}%`,
     };
   }
 
   get tabStyle() {
     return {
       width: `${100 / this.tabs.length}%`,
-      transform: `translateX(-${this.activeTab * 100}%)`
+      transform: `translateX(-${this.activeTab * 100}%)`,
     };
   }
 
-  render(h) {
+  public render(h) {
     const children = this.$slots.default;
     return h(
-      "div",
+      'div',
       {
-        class: "wrapper"
+        class: 'wrapper',
       },
       [
         h(
-          "div",
+          'div',
           {
-            class: "tabs-content",
-            style: this.containerStyle
+            class: 'tabs-content',
+            style: this.containerStyle,
           },
-          this.$slots.default.map(slot =>
-            h("div", { class: "tabs-content__item", style: this.tabStyle }, [
-              slot
-            ])
-          )
-        )
-      ]
+          this.$slots.default.map((slot) =>
+            h('div', { class: 'tabs-content__item', style: this.tabStyle }, [
+              slot,
+            ]),
+          ),
+        ),
+      ],
     );
   }
 }

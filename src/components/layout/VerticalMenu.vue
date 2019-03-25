@@ -1,7 +1,8 @@
 <template lang="pug">
   .vertical-menu
     router-link.menu-item(
-      v-for="item in items"
+      v-for="(item, index) in items"
+      :key="index"
       :class="{ 'menu-item_active': item.isActive }"
       :to="item.link"
     )
@@ -10,12 +11,12 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from "vue-property-decorator";
+import { Component, Prop, Vue } from 'vue-property-decorator';
 
 @Component
 export default class VerticalMenu extends Vue {
   @Prop({ type: Array, default: () => [] })
-  items!: any[];
+  public items!: any[];
 }
 </script>
 

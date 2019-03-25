@@ -10,15 +10,15 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from "vue-property-decorator";
-import NotificationsControl from "@/components/controls/NotificationsControl.vue";
-import UserInfo from "@/components/presentational/UserInfo.vue";
+import { Component, Prop, Vue } from 'vue-property-decorator';
+import NotificationsControl from '@/components/controls/NotificationsControl.vue';
+import UserInfo from '@/components/presentational/UserInfo.vue';
 
 @Component({
   components: {
     NotificationsControl,
-    UserInfo
-  }
+    UserInfo,
+  },
 })
 export default class Navbar extends Vue {}
 </script>
