@@ -26,6 +26,7 @@ export default class TabsContent extends Vue {
     return {
       width: `${100 / this.tabs.length}%`,
       transform: `translateX(-${this.activeTab * 100}%)`,
+      height: this.activeTab ? 'auto' : 0,
     };
   }
 

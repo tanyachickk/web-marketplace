@@ -6,7 +6,7 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
-import Badge from '@/components/presentational/Badge.vue';
+import Badge from '@/components/ui/Badge.vue';
 
 @Component({
   components: {

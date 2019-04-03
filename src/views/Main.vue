@@ -45,10 +45,12 @@ export default class Main extends Vue {
   display: flex;
   flex-direction: column;
   flex-grow: 1;
+  overflow: hidden;
 }
 
 .content {
   flex-grow: 1;
   padding: 0 1.5rem;
+  overflow: auto;
 }
 </style>

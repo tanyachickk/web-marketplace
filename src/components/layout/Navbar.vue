@@ -5,26 +5,33 @@
       input.search__input(placeholder="Поиск по заявкам, откликам, пользователям...")
     .navbar__notifications
       notifications-control
-    .navbar__user
-      user-info
+    .navbar__user(@click="isShowDropdown = !isShowDropdown")
+      user-info(:is-open="isShowDropdown")
+      transition(name="slide")
+        user-dropdown(v-if="isShowDropdown")
 </template>
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
-import NotificationsControl from '@/components/controls/NotificationsControl.vue';
-import UserInfo from '@/components/presentational/UserInfo.vue';
+import NotificationsControl from '@/components/ui/NotificationsControl.vue';
+import UserInfo from '@/components/pages/main/UserInfo.vue';
+import UserDropdown from '@/components/pages/main/UserDropdown.vue';
 
 @Component({
   components: {
     NotificationsControl,
     UserInfo,
+    UserDropdown,
   },
 })
-export default class Navbar extends Vue {}
+export default class Navbar extends Vue {
+  private isShowDropdown: boolean = false;
+}
 </script>
 
 <style lang="scss" scoped>
 .navbar {
+  position: relative;
   display: flex;
   align-items: stretch;
   flex-shrink: 0;
@@ -32,6 +39,7 @@ export default class Navbar extends Vue {}
   padding: 0;
   background-color: white;
   box-shadow: 0 0.125rem 0.625rem rgba(90, 97, 105, 0.12);
+  z-index: 1;
 
   &__search {
     flex-grow: 1;
@@ -71,14 +79,27 @@ export default class Navbar extends Vue {}
     flex-shrink: 0;
     width: 60px;
     border-right: 1px solid #e1e5eb;
+    background-color: white;
     cursor: pointer;
   }
 
   &__user {
+    position: relative;
     flex-shrink: 0;
     min-width: 180px;
     max-width: 320px;
+    background-color: white;
     cursor: pointer;
+  }
+}
+.slide {
+  &-enter-to, &-leave-to {
+    transition: all .2s ease;
+  }
+
+  &-enter, &-leave-to {
+    opacity: 0;
+    transform: translateY(-100%);
   }
 }
 </style>

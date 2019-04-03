@@ -3,8 +3,9 @@
     .input-group__text
       slot
     input.input-group__control(
+      :value="value"
       :type="type"
-      v-on="$listeners"
+      v-on="listeners"
     )
 </template>
 
@@ -15,7 +16,17 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
   components: {},
 })
 export default class InputGroup extends Vue {
+  @Prop() public value: string;
   @Prop() public type: string;
+
+  get listeners() {
+    return {
+      ...this.$listeners,
+      input: (event) => {
+        this.$emit('input', event.target.value);
+      },
+    };
+  }
 }
 </script>
 

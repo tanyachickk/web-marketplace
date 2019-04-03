@@ -8,11 +8,11 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import Card from '@/components/layout/Card.vue';
-import Tabs from '@/components/controls/Tabs.vue';
-import TabsContent from '@/components/controls/TabsContent.vue';
-import SignInForm from '@/components/forms/SignInForm.vue';
-import SignUpForm from '@/components/forms/SignUpForm.vue';
+import Card from '@/components/ui/card/Card.vue';
+import Tabs from '@/components/ui/tabs/Tabs.vue';
+import TabsContent from '@/components/ui/tabs/TabsContent.vue';
+import SignInForm from '@/components/pages/login/SignInForm.vue';
+import SignUpForm from '@/components/pages/login/SignUpForm.vue';
 
 @Component({
   components: {
@@ -33,8 +33,10 @@ export default class LoginForm extends Vue {
 .login-form {
   display: flex;
   flex-direction: column;
-  min-width: 400px;
+  width: 400px;
   min-height: 300px;
+  margin-bottom: 5rem;
+  flex-shrink: 0;
 
   &__body {
     flex-grow: 1;

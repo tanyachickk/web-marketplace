@@ -44,6 +44,7 @@ export default new Router({
           component: Responses,
           meta: {
             title: 'Отклики',
+            sectionPath: '/responses',
             icon: 'email',
           },
         },

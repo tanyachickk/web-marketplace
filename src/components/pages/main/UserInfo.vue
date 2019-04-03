@@ -2,14 +2,19 @@
   .user-info
     img.user-info__avatar(src="https://designrevision.com/demo/shards-dashboard-lite/images/avatars/0.jpg" alt="User Avatar")
     .user-info__name Курочкина Т.E.
-    i.user-info__arrow-icon.material-icons arrow_drop_down
+    i.user-info__arrow-icon.material-icons(
+      :class="{'open': isOpen}"
+    ) arrow_drop_down
 </template>
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
 
 @Component
-export default class UserInfo extends Vue {}
+export default class UserInfo extends Vue {
+  @Prop({ type: Boolean, default: false })
+  private isOpen: boolean;
+}
 </script>
 
 <style lang="scss" scoped>
@@ -41,6 +46,11 @@ export default class UserInfo extends Vue {}
 
   &__arrow-icon {
     font-size: 1.35rem;
+    transition: transform 250ms cubic-bezier(0.27, 0.01, 0.38, 1.06);
+
+    &.open {
+      transform: rotate(180deg);
+    }
   }
 }
 </style>
