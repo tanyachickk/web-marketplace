@@ -9,6 +9,8 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
+import { Action, State } from 'vuex-class';
+import axios, { setToken } from '@/config/axios';
 import Sidebar from '@/components/layout/Sidebar.vue';
 import Navbar from '@/components/layout/Navbar.vue';
 
@@ -19,15 +21,33 @@ import Navbar from '@/components/layout/Navbar.vue';
   },
 })
 export default class Main extends Vue {
+  @Action('getUser')
+  private getUser!: any;
+
+  @State('user')
+  private user!: any;
+
   get routes() {
     return (this.$router as any).options.routes[1].children
       .filter((route) => route.meta && route.meta.title)
       .map((route) => ({
-        link: route.meta.sectionPath || route.path,
+        link: route.path,
         title: route.meta.title,
         icon: route.meta.icon,
         isActive: this.$route.name === route.name,
       }));
+  }
+
+  private created() {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      this.$router.replace('/login');
+      return;
+    }
+    setToken(token);
+    if (!this.user.id) {
+      this.getUser();
+    }
   }
 }
 </script>

@@ -15,13 +15,13 @@
       )
         i.material-icons lock
     .sign-in__footer
-      basic-button(@click="signIn") Войти
+      basic-button(@click="login") Войти
       .sign-in__password-recovery Забыли пароль?
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import LoginService from '@/services/LoginService';
+import { Action } from 'vuex-class';
 import InputGroup from '@/components/ui/InputGroup.vue';
 import ControlLabel from '@/components/ui/FormControlLabel.vue';
 import BasicButton from '@/components/ui/BasicButton.vue';
@@ -34,13 +34,14 @@ import BasicButton from '@/components/ui/BasicButton.vue';
   },
 })
 export default class SignInForm extends Vue {
-  private LoginService = new LoginService();
+  @Action('signIn')
+  private signIn!: any;
 
   private email: string = 'admin';
   private password: string = 'admin';
 
-  private async signIn() {
-    await this.LoginService.signIn(this.email, this.password);
+  private async login() {
+    await this.signIn({ email: this.email, password: this.password });
     this.$router.replace('/');
   }
 }

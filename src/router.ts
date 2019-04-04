@@ -1,7 +1,9 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import Main from './views/Main.vue';
-import Requests from './views/Requests.vue';
+import RequestsList from './views/RequestsList.vue';
+import Request from './views/Request.vue';
+import NewRequest from './views/NewRequest.vue';
 import Responses from './views/Responses.vue';
 import Profile from './views/Profile.vue';
 import Settings from './views/Settings.vue';
@@ -28,28 +30,36 @@ export default new Router({
           redirect: '/requests',
         },
         {
-          path: 'requests/:id?',
-          name: 'requests',
-          component: Requests,
+          path: '/requests',
+          name: 'requestsList',
+          component: RequestsList,
           meta: {
             title: 'Заявки',
-            sectionPath: '/requests',
             icon: 'note_add',
           },
+        },
+        {
+          path: '/requests/:id',
+          name: 'request',
+          component: Request,
           props: (route) => ({ id: +route.params.id }),
         },
         {
-          path: 'responses',
+          path: '/new-request',
+          name: 'newRequest',
+          component: NewRequest,
+        },
+        {
+          path: '/responses',
           name: 'responses',
           component: Responses,
           meta: {
             title: 'Отклики',
-            sectionPath: '/responses',
             icon: 'email',
           },
         },
         {
-          path: 'profile',
+          path: '/profile',
           name: 'profile',
           component: Profile,
           meta: {
@@ -58,7 +68,7 @@ export default new Router({
           },
         },
         {
-          path: 'settings',
+          path: '/settings',
           name: 'settings',
           component: Settings,
           meta: {

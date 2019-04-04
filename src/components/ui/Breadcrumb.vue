@@ -1,6 +1,5 @@
 <template lang="pug">
   .custom-breadcrumb
-    router-link.custom-breadcrumb__section(:to="section.meta.sectionPath") {{ section.meta.title }}
     .custom-breadcrumb__title {{ title }}
 </template>
 
@@ -9,8 +8,6 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
 
 @Component
 export default class Breadcrumb extends Vue {
-  @Prop({ type: Object, default: () => ({}) })
-  public section: any;
   @Prop({ type: String, default: '' })
   public title: string;
 }

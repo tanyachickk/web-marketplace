@@ -1,8 +1,9 @@
 <template lang="pug">
   .wrapper
     input.input(
-      v-bind="$props"
-      v-on="$listeners"
+      :value="value"
+      :placeholder="placeholder"
+      v-on="listeners"
     )
 </template>
 
@@ -12,7 +13,19 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
 @Component({
   components: {},
 })
-export default class BasicInput extends Vue {}
+export default class BasicInput extends Vue {
+  @Prop()
+  private value!: string;
+  @Prop()
+  private placeholder!: string;
+
+  get listeners() {
+    return {
+      ...this.$listeners,
+      input: (event) => { this.$emit('input', event.target.value); },
+    };
+  }
+}
 </script>
 
 <style lang="scss" scoped>

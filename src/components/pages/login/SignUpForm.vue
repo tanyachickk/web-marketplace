@@ -53,12 +53,12 @@
       )
         i.material-icons lock
     .sign-up__footer
-      basic-button(@click="signUp") Зарегистрироваться
+      basic-button(@click="register") Зарегистрироваться
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import LoginService from '@/services/LoginService';
+import { Action } from 'vuex-class';
 import InputGroup from '@/components/ui/InputGroup.vue';
 import ControlLabel from '@/components/ui/FormControlLabel.vue';
 import BasicButton from '@/components/ui/BasicButton.vue';
@@ -75,7 +75,9 @@ import RadioGroup from '@/components/ui/RadioGroup.vue';
   },
 })
 export default class SignUpForm extends Vue {
-  private LoginService = new LoginService();
+  @Action('signUp')
+  private signUp!: any;
+
   private role: number = 0;
   private type: number = 0;
   private companyName: string = '';
@@ -105,8 +107,8 @@ export default class SignUpForm extends Vue {
     return result;
   }
 
-  private async signUp() {
-    await this.LoginService.signUp(this.signUpData);
+  private async register() {
+    await this.signUp(this.signUpData);
     this.$router.replace('/');
   }
 }

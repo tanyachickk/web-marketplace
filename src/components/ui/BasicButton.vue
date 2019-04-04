@@ -14,6 +14,9 @@ export default class BasicButton extends Vue {}
 
 <style lang="scss" scoped>
 .button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     color: #fff;
     border-color: #0091d7;
     background-color: #0091d7;

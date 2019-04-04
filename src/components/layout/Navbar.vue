@@ -6,16 +6,18 @@
     .navbar__notifications
       notifications-control
     .navbar__user(@click="isShowDropdown = !isShowDropdown")
-      user-info(:is-open="isShowDropdown")
+      user-info(:name="username" :is-open="isShowDropdown")
       transition(name="slide")
         user-dropdown(v-if="isShowDropdown")
 </template>
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
+import { State } from 'vuex-class';
 import NotificationsControl from '@/components/ui/NotificationsControl.vue';
 import UserInfo from '@/components/pages/main/UserInfo.vue';
 import UserDropdown from '@/components/pages/main/UserDropdown.vue';
+import { getUsername } from '@/helpers/userData';
 
 @Component({
   components: {
@@ -25,7 +27,14 @@ import UserDropdown from '@/components/pages/main/UserDropdown.vue';
   },
 })
 export default class Navbar extends Vue {
+  @State('user')
+  private user!: any;
+
   private isShowDropdown: boolean = false;
+
+  get username() {
+    return getUsername(this.user);
+  }
 }
 </script>
 
@@ -86,18 +95,20 @@ export default class Navbar extends Vue {
   &__user {
     position: relative;
     flex-shrink: 0;
-    min-width: 180px;
+    min-width: 100px;
     max-width: 320px;
     background-color: white;
     cursor: pointer;
   }
 }
 .slide {
-  &-enter-to, &-leave-to {
-    transition: all .2s ease;
+  &-enter-to,
+  &-leave-to {
+    transition: all 0.2s ease;
   }
 
-  &-enter, &-leave-to {
+  &-enter,
+  &-leave-to {
     opacity: 0;
     transform: translateY(-100%);
   }

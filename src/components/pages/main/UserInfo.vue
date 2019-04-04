@@ -1,7 +1,7 @@
 <template lang="pug">
   .user-info
-    img.user-info__avatar(src="https://designrevision.com/demo/shards-dashboard-lite/images/avatars/0.jpg" alt="User Avatar")
-    .user-info__name Курочкина Т.E.
+    img.user-info__avatar(src="http://www.drreddyforlife.com/wp-content/uploads/2018/05/user-placeholder-1.jpg" alt="User Avatar")
+    .user-info__name {{ name }}
     i.user-info__arrow-icon.material-icons(
       :class="{'open': isOpen}"
     ) arrow_drop_down
@@ -12,6 +12,8 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
 
 @Component
 export default class UserInfo extends Vue {
+  @Prop({ type: String, default: '' })
+  private name: string;
   @Prop({ type: Boolean, default: false })
   private isOpen: boolean;
 }
