@@ -1,21 +1,30 @@
 <template lang="pug">
   .requests-list
     breadcrumb.requests-list__header(:title="$route.meta.title")
+    router-link.requests-list__button(to="/new-request")
+      basic-button
+        i.material-icons add
+        span Создать новую заявку
     .requests-list__body
-      requests-table
+      .requests-list__list
+        request-card.requests-list__item(
+          v-for="(request, index) in requests"
+          :key="index"
+          :request="request"
+        )
 </template>
 
 <script lang="ts">
 import { Component, Vue, Prop } from 'vue-property-decorator';
 import { Action, State } from 'vuex-class';
 import Breadcrumb from '@/components/ui/Breadcrumb.vue';
-import RequestsTable from '@/components/pages/requestsList/RequestsTable.vue';
+import RequestCard from '@/components/pages/requestsList/RequestCard.vue';
 import BasicButton from '@/components/ui/BasicButton.vue';
 
 @Component({
   components: {
     Breadcrumb,
-    RequestsTable,
+    RequestCard,
     BasicButton,
   },
 })
@@ -60,7 +69,6 @@ export default class RequestsList extends Vue {
   }
 
   &__body {
-    position: relative;
     flex-grow: 1;
   }
 

@@ -2,11 +2,11 @@
   .responses
     breadcrumb.responses__header(:section="$route" title="Отклики")
     .responses__body
-      chat-layout
+      chat-layout(:id="id")
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
+import { Component, Vue, Prop } from 'vue-property-decorator';
 import Breadcrumb from '@/components/ui/Breadcrumb.vue';
 import ChatLayout from '@/components/pages/responses/ChatLayout.vue';
 
@@ -16,7 +16,10 @@ import ChatLayout from '@/components/pages/responses/ChatLayout.vue';
     ChatLayout,
   },
 })
-export default class Responses extends Vue {}
+export default class Responses extends Vue {
+  @Prop()
+  private id!: number;
+}
 </script>
 
 <style lang="scss" scoped>
@@ -26,8 +29,8 @@ export default class Responses extends Vue {}
   padding-bottom: 1rem;
 
   &__body {
+    position: relative;
     flex-grow: 1;
-    overflow: hidden;
   }
 }
 </style>

@@ -3,16 +3,16 @@
     breadcrumb.new-request__header(title="Создание новой заявки")
     card.request-form
       .request-form__field
-        form-control-label Заголовок
+        form-control-label.dark Заголовок
         basic-input(v-model="title")
       .request-form__field
-        form-control-label Описание
-        basic-input(v-model="description")
+        form-control-label.dark Описание
+        basic-textarea(v-model="description")
       .request-form__field
-        form-control-label Бюджет
+        form-control-label.dark Бюджет
         basic-input(v-model="budget")
       .request-form__field
-        form-control-label Срок исполнения
+        form-control-label.dark Срок исполнения
         basic-input(type="date" v-model="expirationDate")
       .request-form__footer
         basic-button(@click="create") Создать заявку
@@ -25,6 +25,7 @@ import Breadcrumb from '@/components/ui/Breadcrumb.vue';
 import Card from '@/components/ui/card/Card.vue';
 import FormControlLabel from '@/components/ui/FormControlLabel.vue';
 import BasicInput from '@/components/ui/BasicInput.vue';
+import BasicTextarea from '@/components/ui/BasicTextarea.vue';
 import BasicButton from '@/components/ui/BasicButton.vue';
 
 @Component({
@@ -33,6 +34,7 @@ import BasicButton from '@/components/ui/BasicButton.vue';
     Card,
     FormControlLabel,
     BasicInput,
+    BasicTextarea,
     BasicButton,
   },
 })
@@ -90,10 +92,13 @@ export default class NewRequest extends Vue {
   align-items: center;
   width: 100%;
   &__divider {
-    padding: 0 .5rem;
+    padding: 0 0.5rem;
   }
   &__input {
     flex-grow: 1;
   }
+}
+.dark {
+  color: #5a6169;
 }
 </style>

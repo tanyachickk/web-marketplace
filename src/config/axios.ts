@@ -1,5 +1,5 @@
 import axios from 'axios';
-const HOST = 'http://192.168.0.189:8080';
+const HOST = 'http://94.250.251.18:8080';
 const API_URL = '/api/v1';
 
 const api = axios.create({
