@@ -22,6 +22,17 @@ export default {
     const response = await RequestsApi.getRequests();
     commit('addRequests', response);
   },
+  async finishRequest({ commit }, id) {
+    await axios.post(`/auth/requests/${id}/finish/`).then(({ data }) => data);
+  },
+  async getMessages({ commit }, requestId) {
+    const response = await axios.get(`/auth/requests/${requestId}/messages/`).then(({ data }) => data);
+    return response;
+  },
+  async getDialogMessages({ commit }, responseId) {
+    const response = await axios.get(`/auth/responses/${responseId}/messages/`).then(({ data }) => data);
+    return response;
+  },
   async getResponses({ commit }) {
     const response = await axios.get('/auth/responses').then(({ data }) => data);
     commit('addResponses', response);
@@ -33,5 +44,13 @@ export default {
   async createRequest({ commit }, data) {
     const response = await RequestsApi.createRequest(data);
     commit('addRequests', [response]);
+  },
+  async update({ dispatch }, requestId) {
+    dispatch('getRequests');
+    dispatch('getUser');
+    dispatch('getResponses');
+    if (requestId) {
+      dispatch('getMessages', requestId);
+    }
   },
 };

@@ -1,6 +1,6 @@
 <template lang="pug">
   card.requests-table
-    .requests-table__toolbar
+    //- .requests-table__toolbar
     .requests-table__header.header
       .header__item.header__item_id #
       .header__item.header__item_customer Заказчик
@@ -29,7 +29,9 @@ import requests from './requests';
   },
 })
 export default class RequestsTable extends Vue {
-  private requests: any[] = requests;
+  @Prop()
+  private requests: any[];
+  // private requests: any[] = requests;
 }
 </script>
 

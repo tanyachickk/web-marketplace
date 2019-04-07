@@ -2,14 +2,14 @@
     card.responses-list
       card-header.responses-list__header Отклики
       .responses-list__body
-        .responses-list__item(v-for="response in responses" :key="response.id")
+        .responses-list__item(
+          v-for="response in responses"
+          :key="response.id"
+          :class="response.id === id && 'active'"
+          @click="$emit('input', response.id)"
+        )
           .responses-list__avatar(:style="`backgroundImage: url(${'http://www.drreddyforlife.com/wp-content/uploads/2018/05/user-placeholder-1.jpg'})`")
-          .responses-list__text {{ response.title }}
-          .responses-list__icon
-            i.material-icons chevron_right
-        .responses-list__item(v-for="(response, i) in 20" :key="i")
-          .responses-list__avatar(:style="`backgroundImage: url(${'http://www.drreddyforlife.com/wp-content/uploads/2018/05/user-placeholder-1.jpg'})`")
-          .responses-list__text ООО "Комплексные системы"
+          .responses-list__text {{ getUsername(response.contractorDetails) }}
           .responses-list__icon
             i.material-icons chevron_right
 </template>
@@ -19,6 +19,7 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
 
 import Card from '@/components/ui/card/Card.vue';
 import CardHeader from '@/components/ui/card/CardHeader.vue';
+import { getUsername } from '@/helpers/userData';
 
 @Component({
   components: {
@@ -29,6 +30,17 @@ import CardHeader from '@/components/ui/card/CardHeader.vue';
 export default class ChatResponsesList extends Vue {
   @Prop({ type: Array, default: () => [] })
   private responses!: any[];
+
+  @Prop()
+  private value!: number;
+
+  get id() {
+    return this.value;
+  }
+
+  private getUsername(response) {
+    return getUsername(response);
+  }
 }
 </script>
 
@@ -58,6 +70,9 @@ export default class ChatResponsesList extends Vue {
     cursor: pointer;
     &:hover {
       background-color: rgba(0, 0, 0, 0.03);
+    }
+    &.active {
+      background-color: rgba(0, 0, 0, 0.04);
     }
   }
   &__avatar {

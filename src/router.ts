@@ -41,10 +41,10 @@ export default new Router({
           },
         },
         {
-          path: '/requests/:id',
+          path: '/requests/:requestId',
           name: 'request',
           component: Request,
-          props: (route) => ({ id: +route.params.id }),
+          props: (route) => ({ requestId: +route.params.requestId }),
         },
         {
           path: '/customer/:id',
@@ -59,16 +59,11 @@ export default new Router({
           props: (route) => ({ id: +route.params.id }),
         },
         {
-          path: '/new-request',
-          name: 'newRequest',
-          component: NewRequest,
-        },
-        {
-          path: '/responses/:id?',
+          path: '/responses/',
           name: 'responses',
           component: Responses,
           meta: {
-            title: 'Заказчики',
+            title: 'Отклики',
             icon: 'email',
           },
           props: (route) => ({ id: +route.params.id }),
@@ -78,7 +73,7 @@ export default new Router({
           name: 'profile',
           component: Profile,
           meta: {
-            title: 'Подрядчики',
+            title: 'Профиль',
             icon: 'person',
           },
         },

@@ -23,9 +23,17 @@ import Navbar from '@/components/layout/Navbar.vue';
 export default class Main extends Vue {
   @Action('getUser')
   private getUser!: any;
+  @Action('getRequests')
+  private getRequests!: any;
+  @Action('getResponses')
+  private getResponses!: any;
+  @Action('update')
+  private update!: any;
 
   @State('user')
   private user!: any;
+
+  private timer = null;
 
   get routes() {
     return (this.$router as any).options.routes[1].children
@@ -33,6 +41,7 @@ export default class Main extends Vue {
       .map((route) => ({
         link: route.path,
         title: route.meta.title,
+        name: route.name,
         icon: route.meta.icon,
         isActive: this.$route.name === route.name,
       }));
@@ -45,9 +54,15 @@ export default class Main extends Vue {
       return;
     }
     setToken(token);
-    if (!this.user.id) {
-      this.getUser();
-    }
+    this.update();
+    this.timer = setInterval(() => {
+      const id = this.$route.params.requestId;
+      this.update(id);
+    }, 2000);
+  }
+
+  private beforeDestroy() {
+    clearInterval(this.timer);
   }
 }
 </script>

@@ -1,11 +1,11 @@
 <template lang="pug">
   router-link.requests-table__item(:to="`/requests/${request.id}`")
     .item-field.item-field_id {{ request.id }}
-    .item-field.item-field_customer {{ request.lastName }} {{ request.firstName }} {{ request.surname }}
-    .item-field.item-field_type {{ request.type }}
-    .item-field.item-field_address {{ request.address }}
+    .item-field.item-field_customer {{ contractorName }}
+    .item-field.item-field_type {{ typeValue }}
+    .item-field.item-field_address {{ request.address || '-' }}
     .item-field.item-field_status 
-      .badge {{ request.status }}
+      .badge {{ status }}
 </template>
 
 <script lang="ts">
@@ -14,6 +14,7 @@ import Card from '@/components/ui/card/Card.vue';
 import CardHeader from '@/components/ui/card/CardHeader.vue';
 import SecondaryButton from '@/components/ui/SecondaryButton.vue';
 import { getUsername } from '@/helpers/userData';
+import { getStatus, getType } from '@/helpers/transformData';
 
 @Component({
   components: {
@@ -22,13 +23,25 @@ import { getUsername } from '@/helpers/userData';
     SecondaryButton,
   },
 })
-export default class RequestCard extends Vue {
+export default class RequestTableItem extends Vue {
   @Prop()
   private request: any;
 
   get contractorName() {
     return getUsername(this.request.customerDetails);
   }
+
+  get typeValue() {
+    return getType(this.request);
+  }
+
+  get status() {
+    return getStatus(this.request);
+  }
+
+  technologyConnectionByTimeScheme;
+  technologyConnectionByEnergyRedistribution;
+  documentsRecovery;
 
   get responseCount() {
     const count = this.request.responseCount;

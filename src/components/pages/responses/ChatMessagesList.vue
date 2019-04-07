@@ -4,19 +4,22 @@
       .messages-list__body
         .chat
           .chat__background
-          .chat__body
+          .chat__body#container(:style="!this.isAnimate && 'opacity: 0'")
             .chat__message(
-              v-for="i in 20"
+              v-for="(message, i) in messages"
               :key="i"
-              :class="i % 2 ? 'incomming' : 'outcomming'"
-            ) message {{ i }} ldjlq qwdoqwp wed 23qs
-              .message__text
-              .message__time 13:03
+              :class="defineClass(message)"
+            )
+              .message__text {{ message.text }}
+              .message__time(v-if="message.senderId") 13:03
+          .last-message
         chat-new-message.new-message
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator';
+import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
+import VueScrollTo from 'vue-scrollto';
+import { State } from 'vuex-class';
 import Card from '@/components/ui/card/Card.vue';
 import CardHeader from '@/components/ui/card/CardHeader.vue';
 import ChatNewMessage from '@/components/pages/responses/ChatNewMessage.vue';
@@ -29,8 +32,34 @@ import ChatNewMessage from '@/components/pages/responses/ChatNewMessage.vue';
   },
 })
 export default class ChatMessagesList extends Vue {
+  @State('user')
+  private user!: any;
   @Prop({ type: Array, default: () => [] })
   private messages!: any[];
+
+  isAnimate = false;
+
+  private defineClass(message: any) {
+    if (!message.senderId) {
+      return 'system';
+    }
+    return message.senderId === this.user.id ? 'outcomming' : 'incomming';
+  }
+
+  @Watch('messages')
+  onChangeMessages(value, oldValue) {
+    if (value.length === oldValue.length) {
+      return;
+    }
+    VueScrollTo.scrollTo('.last-message', {
+      container: '#container',
+      offset: 1000,
+      duration: 100,
+    });
+    this.$nextTick(() => {
+      this.isAnimate = true;
+    });
+  }
 }
 </script>
 
@@ -115,6 +144,13 @@ export default class ChatMessagesList extends Vue {
           border-left-color: transparent;
           border-bottom-color: transparent;
         }
+      }
+      &.system {
+        align-self: center;
+        text-align: center;
+        color: rgba(0, 0, 0, 0.75);
+        line-height: 1;
+        margin: 0.3rem 0;
       }
     }
   }

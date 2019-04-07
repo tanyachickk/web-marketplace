@@ -7,20 +7,20 @@
           card-header Информация о подрядчике
           .contractor-info__body
             .field
-              .field__label Наименование организации
+              .field__label Наименование организации:
               .field__value ООО "Комплексные решения"
-            .field
-              .field__label Наличие разрешение (СРО)
+            .field.inline
+              .field__label Наличие разрешение (СРО):
               .field__value Есть
-            .field
-              .field__label Опыт
+            .field.inline
+              .field__label Опыт:
               .field__value 5 лет
-            .field
-              .field__label Текущий рейтинг
+            .field.inline
+              .field__label Текущий рейтинг:
               .field__value
                 .rating-value
-                  vue-star-rating.rating-value__stars(:rating="4.86" :star-size="16" :show-rating="false" :read-only="true" :increment="0.01")
-                  .rating-value__result 4.86
+                  vue-star-rating.rating-value__stars(:rating="4.36" :star-size="16" :show-rating="false" :read-only="true" :increment="0.01")
+                  .rating-value__result 4.36
             .field
               .field__label Описание компании
               .field__value По величине передаваемой мощности Компания входит в десятку самых крупных электросетевых компаний России. Компания занимает лидирующие позиции по сравнению с прочими территориальными сетевыми компаниями, входящими в составы МРСК, по показателю общей протяженности эксплуатируемых воздушных и кабельных линий, а также по количеству подстанций, трансформаторных подстанций и распределительных пунктов. Кроме того, Компания является единственной в России территориальной сетевой организацией, которой принадлежат объекты электросетевого хозяйства уровней напряжения от 0,4 кВ до 500 кВ.
@@ -153,6 +153,19 @@ export default class Contractor extends Vue {
   }
 }
 .field {
+  &.inline {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.7rem;
+    .field__label {
+      margin-bottom: 0;
+      margin-right: 0.7rem;
+    }
+    .field__value {
+      margin-bottom: 0;
+      margin-right: 0.3rem;
+    }
+  }
   &__label {
     font-weight: 400;
     margin-bottom: 0.3rem;
@@ -171,7 +184,7 @@ export default class Contractor extends Vue {
   align-items: center;
   &__result {
     margin-left: 0.3rem;
-    font-size: 14px;
+    font-size: 12px;
     color: #5a6169;
   }
 }

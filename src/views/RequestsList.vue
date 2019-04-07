@@ -2,7 +2,7 @@
   .requests-list
     breadcrumb.requests-list__header(:title="$route.meta.title")
     .requests-list__body
-      requests-table
+      requests-table(:requests="requests")
 </template>
 
 <script lang="ts">
