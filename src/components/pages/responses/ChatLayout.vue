@@ -57,14 +57,14 @@ export default class ResponsesChat extends Vue {
     return Object.values(this.responses).filter((response: any) => response.requestId === this.id);
   }
 
-  onChangeId(value) {
+  private onChangeId(value) {
     this.id = value;
     this.responseId = 0;
     this.messages = [];
   }
 
   @Watch('requests')
-  onChangeRequests(value) {
+  private onChangeRequests(value) {
     if (!this.id && value.length) {
       this.responseId = 0;
       this.id = value[0].id;
@@ -73,7 +73,7 @@ export default class ResponsesChat extends Vue {
   }
 
   @Watch('responsesList')
-  onChangeResponses(value) {
+  private onChangeResponses(value) {
     if (!this.responseId && value.length) {
       this.responseId = value[0].id;
       this.messages = [];
@@ -81,7 +81,7 @@ export default class ResponsesChat extends Vue {
   }
 
   @Watch('id')
-  async onChangeDialog() {
+  private async onChangeDialog() {
     if (this.responseId) {
       this.messages = await this.getDialogMessages(this.responseId);
     } else {

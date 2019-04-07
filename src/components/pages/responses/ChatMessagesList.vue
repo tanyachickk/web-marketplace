@@ -37,7 +37,7 @@ export default class ChatMessagesList extends Vue {
   @Prop({ type: Array, default: () => [] })
   private messages!: any[];
 
-  isAnimate = false;
+  private isAnimate = false;
 
   private defineClass(message: any) {
     if (!message.senderId) {
@@ -47,7 +47,7 @@ export default class ChatMessagesList extends Vue {
   }
 
   @Watch('messages')
-  onChangeMessages(value, oldValue) {
+  private onChangeMessages(value, oldValue) {
     if (value.length === oldValue.length) {
       return;
     }

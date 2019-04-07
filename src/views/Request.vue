@@ -163,7 +163,7 @@ export default class Request extends Vue {
   }
 
   private response() {
-    console.log('response!');
+    // console.log('response!');
   }
 }
 </script>

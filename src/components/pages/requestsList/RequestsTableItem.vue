@@ -39,10 +39,6 @@ export default class RequestTableItem extends Vue {
     return getStatus(this.request);
   }
 
-  technologyConnectionByTimeScheme;
-  technologyConnectionByEnergyRedistribution;
-  documentsRecovery;
-
   get responseCount() {
     const count = this.request.responseCount;
     let text = 'откликов';
